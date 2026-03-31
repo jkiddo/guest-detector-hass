@@ -1,0 +1,24 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Guest Detector Setup",
+        "description": "Configure guest detection based on energy consumption patterns from Eloverblik. Uses a sliding window with seasonal awareness (heating floor Oct-Feb).",
+        "data": {
+          "energy_entity": "Energy sensor entity",
+          "window_size": "Sliding window size (days)",
+          "threshold": "Detection threshold multiplier",
+          "min_excess": "Minimum excess energy (kWh)",
+          "heating_floor": "Heating season floor (kWh)"
+        },
+        "data_description": {
+          "energy_entity": "The Eloverblik energy statistic sensor with long-term statistics.",
+          "window_size": "Number of days for the baseline window. Uses 25th percentile to ignore visit spikes (default: 30).",
+          "threshold": "Energy must exceed baseline by this factor (default: 1.5 = 50% above baseline).",
+          "min_excess": "Minimum absolute kWh above baseline to trigger detection (default: 2.0). Prevents false positives when baseline is very low.",
+          "heating_floor": "Minimum baseline in heating season (Oct-Feb) to account for frost protection energy (default: 3.0 kWh)."
+        }
+      }
+    }
+  }
+}

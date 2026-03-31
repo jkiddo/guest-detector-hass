@@ -1,0 +1,10 @@
+{
+  "domain": "guest_detector",
+  "name": "Guest Detector",
+  "codeowners": [],
+  "config_flow": true,
+  "dependencies": ["recorder"],
+  "documentation": "https://github.com/jkiddo/guest-detector",
+  "iot_class": "local_polling",
+  "version": "1.0.0"
+}
