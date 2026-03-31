@@ -225,14 +225,13 @@ class EnergyWindowCoordinator(DataUpdateCoordinator):
         for entry in entity_stats:
             day_value = entry.get("change")
             if day_value is not None and day_value > 0:
-                raw_start = entry.get("start")
-                if raw_start is None:
-                    continue
-                start_dt = (
-                    raw_start
-                    if isinstance(raw_start, datetime)
-                    else dt_util.parse_datetime(str(raw_start))
-                )
+                raw_start = entry["start"]
+                if isinstance(raw_start, datetime):
+                    start_dt = raw_start
+                elif isinstance(raw_start, (int, float)):
+                    start_dt = dt_util.utc_from_timestamp(raw_start)
+                else:
+                    start_dt = dt_util.parse_datetime(raw_start)
                 daily_values.append(
                     {"date": start_dt, "energy": round(day_value, 2)}
                 )
